@@ -1,6 +1,6 @@
 // Styling
-// 🚀 Creation d'un composant personalisé
-// http://localhost:3000/alone/final/01.bonus-1.js
+// 🚀 Tabs
+// http://localhost:3000/alone/exercise/01.bonus-1.js
 
 import * as React from 'react'
 import Tab from '../tab'
