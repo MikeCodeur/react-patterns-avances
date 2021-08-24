@@ -3,7 +3,7 @@
 // http://localhost:3000/alone/final/01.bonus-1.js
 
 import * as React from 'react'
-import Tab from '../tab'
+import {default as TabsComponent} from '../tab'
 
 function CompoundComponentParent({children}) {
   const [selectedTabId, setSelectedTabId] = React.useState(0)
@@ -12,7 +12,7 @@ function CompoundComponentParent({children}) {
     React.cloneElement(child, {
       selectedTabId: selectedTabId,
       selectTab: selectTab,
-    }),
+    })
   )
 }
 
@@ -28,9 +28,10 @@ function Tokyo({selectedTabId, children}) {
   return selectedTabId === 2 ? <div>{children}</div> : null
 }
 
-function Tabs({selectedTabId, selectTab, ...props}) {
-  return <Tab selected={selectedTabId} onChange={selectTab} {...props} />
+function Tabs({selectedTabId, selectTab, tabs}) {
+  return <TabsComponent selected={selectedTabId} onChange={selectTab} tabs={tabs} />
 }
+
 function App() {
   const options = [
     {title: 'London', display: 'London is the capital city of England.'},

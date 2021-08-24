@@ -4,10 +4,7 @@
 import * as React from 'react'
 import CheckBox from '../checkbox'
 
-// 🐶 ajoute un props className à chaque element avec le bon nonm 
-// 🤖 Les class names dispo: container, container--large, container--medium, container--small
-
-// 🐶 transforme CompoundComponentParent en vrai composant composé 
+// 🐶 transforme 'CompoundComponentParent' en vrai composant composé 
 function CompoundComponentParent() {
   const [checked, setChecked] = React.useState(false)
   const tick = () => setChecked(!checked)

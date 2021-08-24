@@ -1,5 +1,5 @@
 // Compound Components
-// 🚀 Creation d'un composant personalisé
+// 🚀 Supporter un enfant "autre"
 // http://localhost:3000/alone/final/01.bonus-1.js
 
 import * as React from 'react'
@@ -8,13 +8,15 @@ import '../tab.css'
 function Tabs({children, ...props}) {
   const [selectedTabId, setSelectedTabId] = React.useState(0)
   const selectTab = id => setSelectedTabId(id)
-  const clones = React.Children.map(children, child =>
-    React.cloneElement(child, {
-      selectedTabId: selectedTabId,
-      selectTab: selectTab,
-      ...props,
-    })
-  )
+  const clones = React.Children.map(children, child => {
+    return typeof child.type === 'string'
+      ? child
+      : React.cloneElement(child, {
+          selectedTabId: selectedTabId,
+          selectTab: selectTab,
+          ...props,
+        })
+  })
   return (
     <div className="tabs" {...props}>
       {clones}
@@ -77,6 +79,7 @@ function App() {
         <Panel>🥖 Inscription pour aller à Paris</Panel>
         <Panel>🗻 Inscription pour aller à Tokyo</Panel>
       </TabPanels>
+      <small> * Ceci est un autre composant</small>
     </Tabs>
   )
 }
