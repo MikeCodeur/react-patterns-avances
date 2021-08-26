@@ -4,68 +4,69 @@
 import * as React from 'react'
 import CheckBox from '../checkbox'
 
-const callAll = (...fns) => (...args) => fns.forEach(fn => fn?.(...args))
+const executeAll = (...functions) => (...args) => functions.forEach(func => func?.(...args))
 
-function toggleReducer(state, {type, initialState}) {
-  switch (type) {
-    case 'toggle': {
-      return {on: !state.on}
+
+function defaultCheckboxReducer(state, action) {
+  switch (action.type) {
+    case 'tick': {
+      return {checked: !state.checked}
     }
     case 'reset': {
-      return initialState
+      return action.initialState
     }
     default: {
-      throw new Error(`Unsupported type: ${type}`)
+      throw new Error(`Action non supporté: ${action.type}`)
     }
   }
 }
 
-function useCheckBox({initialOn = false, reducer = toggleReducer} = {}) {
-  const {current: initialState} = React.useRef({on: initialOn})
+function useCheckBox({initialChecked = false, reducer = defaultCheckboxReducer} = {}) {
+  const {current: initialState} = React.useRef({checked: initialChecked})
   const [state, dispatch] = React.useReducer(reducer, initialState)
-  const {on} = state
+  const {checked} = state
 
-  const toggle = () => dispatch({type: 'toggle'})
+  const tick = () => dispatch({type: 'tick'})
   const reset = () => dispatch({type: 'reset', initialState})
 
-  function getTogglerProps({onClick, ...props} = {}) {
+  const getCheckboxerProps = ({onClick, ...props} = {}) =>{
     return {
-      'aria-pressed': on,
-      onClick: callAll(onClick, toggle),
+      'aria-checked': checked,
+      onChange: executeAll(onClick, tick),
       ...props,
     }
   }
 
-  function getResetterProps({onClick, ...props} = {}) {
+  const getResetterProps = ({onClick, ...props} = {}) => {
     return {
-      onClick: callAll(onClick, reset),
+      onClick: executeAll(onClick, reset),
       ...props,
     }
   }
 
   return {
-    on,
+    checked,
     reset,
-    toggle,
-    getTogglerProps,
+    tick,
+    getCheckboxerProps,
     getResetterProps,
   }
 }
 
 function App() {
-  const [timesClicked, setTimesClicked] = React.useState(0)
-  const clickedTooMuch = timesClicked >= 4
+  const [timesChanged, setTimesChanged] = React.useState(0)
+  const changedTooMuch = timesChanged >= 4
 
-  function toggleStateReducer(state, action) {
+  function checkboxStateReducer(state, action) {
     switch (action.type) {
-      case 'toggle': {
-        if (clickedTooMuch) {
-          return {on: state.on}
+      case 'tick': {
+        if (changedTooMuch) {
+          return {checked: state.checked}
         }
-        return {on: !state.on}
+        return {checked: !state.checked}
       }
       case 'reset': {
-        return {on: false}
+        return {checked: false}
       }
       default: {
         throw new Error(`Unsupported type: ${action.type}`)
@@ -73,13 +74,29 @@ function App() {
     }
   }
 
-  const {on, getTogglerProps, getResetterProps} = useCheckBox({
-    reducer: toggleStateReducer,
+  const {checked, getCheckboxerProps, getResetterProps} = useCheckBox({
+    reducer: checkboxStateReducer,
   })
   return (
     <div>
-      {/* <CheckBox checked={checked}  {...checkboxProps} /> */}
-      <br />
+    <CheckBox
+        {...getCheckboxerProps({
+          disabled: changedTooMuch,
+          checked: checked,
+          onClick: () => setTimesChanged(count => count + 1),
+        })}
+      />
+      {changedTooMuch ? (
+        <div data-testid="notice">
+          Tu as changer trop de fois !
+          <br />
+        </div>
+      ) : timesChanged > 0 ? (
+        <div data-testid="click-count">Nombre de changement: {timesChanged}</div>
+      ) : null}
+      <button {...getResetterProps({onClick: () => setTimesChanged(0)})}>
+        Reset
+      </button>
      
     </div>
   )

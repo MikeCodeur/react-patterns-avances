@@ -1,6 +1,7 @@
 // Composants composés avec Context
 // http://localhost:3000/alone/exercise/02.js
 
+/* eslint-disable no-unused-vars */
 import * as React from 'react'
 import '../tab.css'
 

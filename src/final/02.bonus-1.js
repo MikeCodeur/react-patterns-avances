@@ -2,6 +2,7 @@
 // 🚀 Validation du Hook Provider
 // http://localhost:3000/alone/final/02.bonus-1.js
 
+/* eslint-disable no-unused-vars */
 import * as React from 'react'
 import '../tab.css'
 
