@@ -1,10 +1,15 @@
 // Props Control
-// http://localhost:3000/alone/final/05.js
+// 🚀 Warning controllé / non controllé
+// http://localhost:3000/alone/final/05.bonus-2.js
 
 import * as React from 'react'
 import CheckBox from '../checkbox'
+import warning from 'warning'
 
-const executeAll = (...functions) => (...args) => functions.forEach(func => func?.(...args))
+const executeAll =
+  (...functions) =>
+  (...args) =>
+    functions.forEach(func => func?.(...args))
 
 const actionTypes = {
   tick: 'tick',
@@ -25,14 +30,38 @@ function defaultCheckboxReducer(state, action) {
   }
 }
 
-function useCheckBox({initialChecked = false,
-   reducer = defaultCheckboxReducer,
-   onChange,
-   checked: controlledChecked} = {}) {
+function useCheckBox({
+  initialChecked = false,
+  reducer = defaultCheckboxReducer,
+  onChange,
+  checked: controlledChecked,
+} = {}) {
   const {current: initialState} = React.useRef({checked: initialChecked})
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const checkedIsControlled = controlledChecked != null
   const checked = checkedIsControlled ? controlledChecked : state.checked
+
+  const {current : previousIsControlledMode} = React.useRef(checkedIsControlled)
+
+  React.useEffect(()=> {
+    warning(
+      !(!previousIsControlledMode && checkedIsControlled),
+      `\`useCheckBox\` passe d'un mode non-controllé à un mode controllé. Décider d'un mode controllé ou non pour \`useCheckBox\``,
+    )
+    warning(
+      !(previousIsControlledMode && !checkedIsControlled),
+      `\`useCheckBox\` passe d'un mode controllé à un mode non-controllé. Décider d'un mode controllé ou non \`useCheckBox\` `,
+    )
+
+  },[checkedIsControlled, previousIsControlledMode])
+  
+  const hasOnChange = typeof onChange!= 'undefined'
+  React.useEffect(() => {
+    warning(
+      !(!hasOnChange && checkedIsControlled),
+      `Un prop \`checked\` est passé à useCheckBox sans \`onChange\` . Cela rendra la checkbox en lecture seule. Si vous voulez le rendre modifiable, ajouter \`onChange\``,
+    )
+  }, [hasOnChange, checkedIsControlled])
 
   function dispatchWithOnChange(action) {
     if (!checkedIsControlled) {
@@ -42,9 +71,10 @@ function useCheckBox({initialChecked = false,
   }
 
   const tick = () => dispatchWithOnChange({type: actionTypes.tick})
-  const reset = () => dispatchWithOnChange({type: actionTypes.reset, initialState})
+  const reset = () =>
+    dispatchWithOnChange({type: actionTypes.reset, initialState})
 
-  const getCheckboxerProps = ({onClick, ...props} = {}) =>{
+  const getCheckboxerProps = ({onClick, ...props} = {}) => {
     return {
       'aria-checked': checked,
       onChange: executeAll(onClick, tick),
@@ -68,21 +98,24 @@ function useCheckBox({initialChecked = false,
   }
 }
 
-function SuperCheckBox({checked: controlledChecked, onChange}) {
-  const {checked, getCheckboxerProps} = useCheckBox({checked: controlledChecked, onChange})
+function SuperCheckBox({checked: controlledChecked, onChange, readOnly}) {
+  const {checked, getCheckboxerProps} = useCheckBox({
+    checked: controlledChecked,
+    onChange,
+    readOnly
+  })
   const props = getCheckboxerProps({checked})
   return <CheckBox {...props} />
 }
 
-
 function App() {
-  const [allchecked, setAllchecked] = React.useState(false)
+  const [allchecked, setAllchecked] = React.useState(/*false*/)
   const [timesChanged, setTimesChanged] = React.useState(0)
   const changedTooMuch = timesChanged >= 4
 
   function handlecheckboxChange(state, action) {
     if (action.type === actionTypes.tick && changedTooMuch) {
-      return 
+      return
     }
     setAllchecked(state.checked)
     setTimesChanged(timesChanged => timesChanged + 1)
@@ -94,24 +127,26 @@ function App() {
   }
   return (
     <div>
-    <SuperCheckBox checked={allchecked}  onChange={handlecheckboxChange} />
-    <SuperCheckBox checked={allchecked}  onChange={handlecheckboxChange} />
-    <SuperCheckBox checked={allchecked}  onChange={handlecheckboxChange} />
-    
+      <SuperCheckBox checked={allchecked} onChange={handlecheckboxChange} />
+      <SuperCheckBox checked={allchecked} onChange={handlecheckboxChange} />
+      <SuperCheckBox checked={allchecked} onChange={handlecheckboxChange} />
+
       {changedTooMuch ? (
         <div data-testid="notice">
           Tu as changer trop de fois !
           <br />
         </div>
       ) : timesChanged > 0 ? (
-        <div data-testid="click-count">Nombre de changement: {timesChanged}</div>
+        <div data-testid="click-count">
+          Nombre de changement: {timesChanged}
+        </div>
       ) : null}
       <button onClick={handleResetClick}>Reset</button>
       <hr />
       <div>
         <div>Checkbox non controllé :</div>
         <SuperCheckBox
-         /* onChange={(...args) =>
+        /* onChange={(...args) =>
             console.info('Uncontrolled CheckBox onChange', ...args)
           }*/
         />
