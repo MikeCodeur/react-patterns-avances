@@ -38,7 +38,7 @@ function useCheckBox({
   //  onChange,
   //  checked: controlledChecked
 } = {}) {
-  const {current: initialState} = React.useRef({checked: initialChecked})
+  const initialState = {checked: initialChecked}
   const [state, dispatch] = React.useReducer(reducer, initialState)
 
   // 🐶 créé une variable 'checkedIsControlled' qui permet de savoir si 'checked' est controllé

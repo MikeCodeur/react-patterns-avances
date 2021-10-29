@@ -71,7 +71,7 @@ function App() {
       case 'tick': {
         // 🤖 implémente l'arret du changement d'état avec :
         //
-        // if (timesChanged <= 5) {
+        // if (changedTooMuch) {
         //   return {checked: state.checked}
         // }
         return {checked: !state.checked}
