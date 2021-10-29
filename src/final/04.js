@@ -26,8 +26,8 @@ function defaultCheckboxReducer(state, action) {
 function useCheckBox({
   initialChecked = false,
   reducer = defaultCheckboxReducer,
-} = {}) {
-  const {current: initialState} = React.useRef({checked: initialChecked})
+}) {
+  const initialState = {checked: initialChecked}
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const {checked} = state
 
@@ -74,7 +74,7 @@ function App() {
         return {checked: false}
       }
       default: {
-        throw new Error(`Unsupported type: ${action.type}`)
+        throw new Error(`Action non supporté: ${action.type}`)
       }
     }
   }
@@ -86,7 +86,6 @@ function App() {
     <div>
       <CheckBox
         {...getCheckboxerProps({
-          disabled: changedTooMuch,
           checked: checked,
           onClick: () => setTimesChanged(count => count + 1),
         })}

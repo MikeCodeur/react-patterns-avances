@@ -1,4 +1,4 @@
-// Staate reducer
+// State reducer
 // http://localhost:3000/alone/exercise/02.js
 
 import * as React from 'react'
@@ -25,9 +25,8 @@ function defaultCheckboxReducer(state, action) {
 
 // 🐶 ajoute un paramètre 'reducer' initialisé par defaut à 'defaultCheckboxReducer'
 // 🤖 {initialChecked = false, reducer = defaultCheckboxReducer} = {}
-function useCheckBox({initialChecked = false} = {}) {
-  const {current: initialState} = React.useRef({checked: initialChecked})
-
+function useCheckBox({initialChecked = false}) {
+  const initialState = {checked: initialChecked}
   // 🐶 A la place d'utiliser 'defaultCheckboxReducer' utilise 'reducer' passé en paramètre.
   const [state, dispatch] = React.useReducer(
     defaultCheckboxReducer,
@@ -87,13 +86,15 @@ function App() {
   }
 
   const {checked, getCheckboxerProps, getResetterProps} = useCheckBox({
-    reducer: customCheckboxStateReducer,
+    // 🐶 passe le customReducer
+    // 🤖 reducer: customCheckboxStateReducer,
   })
 
   return (
     <div>
       <CheckBox
         {...getCheckboxerProps({
+          // 🤖 supprime disable
           disabled: changedTooMuch,
           checked: checked,
           onClick: () => setTimesChanged(count => count + 1),
@@ -105,7 +106,9 @@ function App() {
           <br />
         </div>
       ) : timesChanged > 0 ? (
-        <div data-testid="click-count">Click count: {timesChanged}</div>
+        <div data-testid="click-count">
+          Nombre de changement: {timesChanged}
+        </div>
       ) : null}
       <button {...getResetterProps({onClick: () => setTimesChanged(0)})}>
         Reset

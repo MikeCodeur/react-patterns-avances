@@ -26,6 +26,7 @@ function useTabs() {
   if (!context) {
     throw new Error("useTabs s'utilise dans un <Tabs /> ")
   }
+  return context
 }
 
 function TabList({children, ...props}) {

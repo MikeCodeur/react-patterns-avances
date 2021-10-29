@@ -27,8 +27,8 @@ function defaultCheckboxReducer(state, action) {
 function useCheckBox({
   initialChecked = false,
   reducer = defaultCheckboxReducer,
-} = {}) {
-  const {current: initialState} = React.useRef({checked: initialChecked})
+}) {
+  const initialState = {checked: initialChecked}
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const {checked} = state
 
