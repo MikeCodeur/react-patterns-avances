@@ -12,7 +12,7 @@ function useCheckBox() {
     checked,
     tick,
     checkboxProps: {
-      role:'checkbox',
+      role: 'checkbox',
       'aria-checked': checked,
       onClick: tick,
       onChange: tick,
@@ -24,7 +24,7 @@ function App() {
   const {checked, checkboxProps} = useCheckBox()
   return (
     <div>
-      <CheckBox checked={checked}  {...checkboxProps} />
+      <CheckBox checked={checked} {...checkboxProps} />
       <br />
       <button aria-label="checkbox-personnalise" {...checkboxProps}>
         {checked ? '✔️' : '❌'}

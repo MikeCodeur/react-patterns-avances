@@ -45,7 +45,7 @@ function useCheckBox({
   // 🤖 const checkedIsControlled = controlledChecked != null
 
   // 🐶 modifie la ligne suivante pour mettre à jour la valeur de 'checked' à 'controlledChecked'
-  // si 'checkedIsControlled' est à true sinon à 'state.checked' 
+  // si 'checkedIsControlled' est à true sinon à 'state.checked'
   // cele nous permet soit d'utiliser le state soit le prop
   const {checked} = state
 
@@ -140,7 +140,6 @@ function App() {
           }
         />
       </div>
-     
     </div>
   )
 }

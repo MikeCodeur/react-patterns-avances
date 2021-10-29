@@ -10,7 +10,7 @@ import {CounterProvider, useCounter} from './06/context-counter'
 function Counter() {
   const [state, dispatch] = useCounter()
   // ⛏️ Déplace et adapte les fonctions 'increment' et 'decrement' dans '06/context-counter.js'
-  // Pense ensuite à les réimporter pour pourvoir les utiliser 
+  // Pense ensuite à les réimporter pour pourvoir les utiliser
   const increment = () => dispatch({type: 'increment'})
   const decrement = () => dispatch({type: 'decrement'})
   return (
@@ -31,8 +31,8 @@ function TwoCheckbox() {
   return (
     <div>
       {/* 🐶 utilise les fonction 'increment' importé avec comme paramètre 'dipatch'  */}
-      <CheckBox onChange={increment}/>
-      <CheckBox onChange={decrement}/>
+      <CheckBox onChange={increment} />
+      <CheckBox onChange={decrement} />
     </div>
   )
 }

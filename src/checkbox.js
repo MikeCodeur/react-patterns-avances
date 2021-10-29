@@ -2,7 +2,6 @@ import * as React from 'react'
 import './checkbox.css'
 
 function CheckBox({checked, onChange}) {
-
   return (
     <div className="demo">
       <div className="demo__content">

@@ -1,11 +1,15 @@
+// eslint-disable-next-line no-unused-vars
 import * as React from 'react'
 
 import {CounterProvider, useCounter} from './context-counter-general'
-import {CounterChangedProvider, useCounterChanged} from './context-counter-changed'
+import {
+  CounterChangedProvider,
+  useCounterChanged,
+} from './context-counter-changed'
 
 const increment = dispatch => dispatch({type: 'increment'})
 const decrement = dispatch => dispatch({type: 'decrement'})
-const reset  = dispatch => dispatch({type: 'reset'})
+const reset = dispatch => dispatch({type: 'reset'})
 
 const defaultReducer = (state, action) => {
   const change = action.step ?? 1
@@ -33,5 +37,5 @@ export {
   useCounterChanged,
   increment,
   decrement,
-  reset
+  reset,
 }

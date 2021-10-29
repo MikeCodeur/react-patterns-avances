@@ -20,7 +20,7 @@ function App() {
   const {checked, checkboxProps} = useCheckBox()
   return (
     <div>
-      <CheckBox checked={checked}  {...checkboxProps} />
+      <CheckBox checked={checked} {...checkboxProps} />
       <br />
       <button aria-label="checkbox-personnalise" {...checkboxProps}>
         {checked ? '✔️' : '❌'}

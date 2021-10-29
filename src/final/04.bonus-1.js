@@ -5,7 +5,10 @@
 import * as React from 'react'
 import CheckBox from '../checkbox'
 
-const executeAll = (...functions) => (...args) => functions.forEach(func => func?.(...args))
+const executeAll =
+  (...functions) =>
+  (...args) =>
+    functions.forEach(func => func?.(...args))
 
 function defaultCheckboxReducer(state, action) {
   switch (action.type) {
@@ -21,7 +24,10 @@ function defaultCheckboxReducer(state, action) {
   }
 }
 
-function useCheckBox({initialChecked = false, reducer = defaultCheckboxReducer} = {}) {
+function useCheckBox({
+  initialChecked = false,
+  reducer = defaultCheckboxReducer,
+} = {}) {
   const {current: initialState} = React.useRef({checked: initialChecked})
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const {checked} = state
@@ -29,7 +35,7 @@ function useCheckBox({initialChecked = false, reducer = defaultCheckboxReducer} 
   const tick = () => dispatch({type: 'tick'})
   const reset = () => dispatch({type: 'reset', initialState})
 
-  const getCheckboxerProps = ({onClick, ...props} = {}) =>{
+  const getCheckboxerProps = ({onClick, ...props} = {}) => {
     return {
       'aria-checked': checked,
       onChange: executeAll(onClick, tick),
@@ -69,7 +75,7 @@ function App() {
   })
   return (
     <div>
-    <CheckBox
+      <CheckBox
         {...getCheckboxerProps({
           disabled: changedTooMuch,
           checked: checked,
@@ -82,12 +88,13 @@ function App() {
           <br />
         </div>
       ) : timesChanged > 0 ? (
-        <div data-testid="click-count">Nombre de changement: {timesChanged}</div>
+        <div data-testid="click-count">
+          Nombre de changement: {timesChanged}
+        </div>
       ) : null}
       <button {...getResetterProps({onClick: () => setTimesChanged(0)})}>
         Reset
       </button>
-     
     </div>
   )
 }

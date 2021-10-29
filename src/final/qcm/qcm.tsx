@@ -3,13 +3,13 @@ import React from 'react'
 
 interface IQuestion {
   question: string
-  options:string[]
+  options: string[]
   answer: string
 }
 
 interface IQCMInterface {
   exerciseId: string
-  exerciseTitle : string
+  exerciseTitle: string
   quiz: IQuestion[]
 }
 
@@ -19,10 +19,10 @@ const QCM: Array<IQCMInterface> = [
     exerciseTitle: 'Composants Composés',
     quiz: [
       {
-        question: "Valide simplement cet exercice en cliquant sur validé",
-        options: ["Validé", "Non validé"],
-        answer: "0"
-      }
+        question: 'Valide simplement cet exercice en cliquant sur validé',
+        options: ['Validé', 'Non validé'],
+        answer: '0',
+      },
     ],
   },
   {
@@ -30,10 +30,10 @@ const QCM: Array<IQCMInterface> = [
     exerciseTitle: 'Composants composés avec Contexte',
     quiz: [
       {
-        question: "Valide simplement cet exercice en cliquant sur validé",
-        options: ["Validé", "Non validé"],
-        answer: "0"
-      }
+        question: 'Valide simplement cet exercice en cliquant sur validé',
+        options: ['Validé', 'Non validé'],
+        answer: '0',
+      },
     ],
   },
   {
@@ -41,10 +41,10 @@ const QCM: Array<IQCMInterface> = [
     exerciseTitle: 'Collection de props',
     quiz: [
       {
-        question: "Valide simplement cet exercice en cliquant sur validé",
-        options: ["Validé", "Non validé"],
-        answer: "0"
-      }
+        question: 'Valide simplement cet exercice en cliquant sur validé',
+        options: ['Validé', 'Non validé'],
+        answer: '0',
+      },
     ],
   },
   {
@@ -52,10 +52,10 @@ const QCM: Array<IQCMInterface> = [
     exerciseTitle: 'State Reducer',
     quiz: [
       {
-        question: "Valide simplement cet exercice en cliquant sur validé",
-        options: ["Validé", "Non validé"],
-        answer: "0"
-      }
+        question: 'Valide simplement cet exercice en cliquant sur validé',
+        options: ['Validé', 'Non validé'],
+        answer: '0',
+      },
     ],
   },
   {
@@ -63,10 +63,10 @@ const QCM: Array<IQCMInterface> = [
     exerciseTitle: 'Props Control',
     quiz: [
       {
-        question: "Valide simplement cet exercice en cliquant sur validé",
-        options: ["Validé", "Non validé"],
-        answer: "0"
-      }
+        question: 'Valide simplement cet exercice en cliquant sur validé',
+        options: ['Validé', 'Non validé'],
+        answer: '0',
+      },
     ],
   },
   {
@@ -74,10 +74,10 @@ const QCM: Array<IQCMInterface> = [
     exerciseTitle: 'Context Module Functions',
     quiz: [
       {
-        question: "Valide simplement cet exercice en cliquant sur validé",
-        options: ["Validé", "Non validé"],
-        answer: "0"
-      }
+        question: 'Valide simplement cet exercice en cliquant sur validé',
+        options: ['Validé', 'Non validé'],
+        answer: '0',
+      },
     ],
   },
 ]
@@ -85,6 +85,6 @@ const QCM: Array<IQCMInterface> = [
 //export default QCM;
 
 const QcmComponent = () => {
-  return (<>{ JSON.stringify(QCM, null, 2) }</>);
+  return <>{JSON.stringify(QCM, null, 2)}</>
 }
 export default QcmComponent

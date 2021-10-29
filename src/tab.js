@@ -7,7 +7,8 @@ function Tabs({selected = 0, onChange, tabs}) {
       <div className="tab">
         {tabs.map((item, id) => {
           return (
-            <button key={id}
+            <button
+              key={id}
               className={selected === id ? 'tablinks active' : 'tablinks'}
               onClick={e => onChange(id)}
             >

@@ -13,7 +13,7 @@ function Tabs({children, ...props}) {
       selectedTabId: selectedTabId,
       selectTab: selectTab,
       ...props,
-    })
+    }),
   )
   return (
     <div className="tabs" {...props}>

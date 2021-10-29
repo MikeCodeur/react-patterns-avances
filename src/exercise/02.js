@@ -5,7 +5,7 @@
 import * as React from 'react'
 import '../tab.css'
 
-// 🐶 Créé un contexte 'TabsContext' 
+// 🐶 Créé un contexte 'TabsContext'
 // 🤖 utilise `React.createContext()`
 
 function Tabs({children, ...props}) {
@@ -34,7 +34,9 @@ function Tabs({children, ...props}) {
 }
 
 // 🐶 Créé une hook consumer `useTabs()`
-function useTabs() {return null}
+function useTabs() {
+  return null
+}
 // Ce hook retourne le contexte
 // 🤖 React.useContext(TabsContext)
 
