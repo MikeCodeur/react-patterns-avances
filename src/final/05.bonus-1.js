@@ -41,7 +41,7 @@ function useCheckBox({
   const checkedIsControlled = controlledChecked != null
   const checked = checkedIsControlled ? controlledChecked : state.checked
 
-  const hasOnChange = typeof onChange!= 'undefined'
+  const hasOnChange = typeof onChange != 'undefined'
   React.useEffect(() => {
     warning(
       !(!hasOnChange && checkedIsControlled),
@@ -88,7 +88,7 @@ function SuperCheckBox({checked: controlledChecked, onChange, readOnly}) {
   const {checked, getCheckboxerProps} = useCheckBox({
     checked: controlledChecked,
     onChange,
-    readOnly
+    readOnly,
   })
   const props = getCheckboxerProps({checked})
   return <CheckBox {...props} />
@@ -113,7 +113,9 @@ function App() {
   }
   return (
     <div>
-      <SuperCheckBox checked={allchecked} /*onChange={handlecheckboxChange} *//>
+      <SuperCheckBox
+        checked={allchecked} /*onChange={handlecheckboxChange} */
+      />
       <SuperCheckBox checked={allchecked} onChange={handlecheckboxChange} />
       <SuperCheckBox checked={allchecked} onChange={handlecheckboxChange} />
 

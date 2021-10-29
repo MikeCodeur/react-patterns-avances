@@ -58,7 +58,7 @@ function TabPanels({children}) {
   )
 }
 
-function Panel({ panelId, children, ...props}) {
+function Panel({panelId, children, ...props}) {
   const {selectedTabId} = useTabs()
   return selectedTabId === panelId ? <div {...props}>{children}</div> : null
 }

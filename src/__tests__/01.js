@@ -8,7 +8,9 @@ import App from '../final/01'
 
 test('effectue le rendu et vérifie le style', () => {
   render(<App />)
-  const allContainers = screen.getAllByText(/❌ Je decline les termes du contrat/i)
+  const allContainers = screen.getAllByText(
+    /❌ Je decline les termes du contrat/i,
+  )
 
   const className = 'container'
   allContainers.forEach(container => {

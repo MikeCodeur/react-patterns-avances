@@ -1,6 +1,8 @@
-
 import {CounterProvider, useCounter} from './context-counter-general'
-import {CounterChangedProvider, useCounterChanged} from './context-counter-changed'
+import {
+  CounterChangedProvider,
+  useCounterChanged,
+} from './context-counter-changed'
 
 // 🐶 créé les fonction 'increment' et 'decrement' avec comme paramètre 'dispatch' et qui disptach l'action
 
@@ -21,8 +23,6 @@ const defaultReducer = (state, action) => {
     }
   }
 }
-
-
 
 export {
   defaultReducer as reducer,

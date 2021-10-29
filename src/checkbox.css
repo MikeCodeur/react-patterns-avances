@@ -44,16 +44,16 @@ body {
   margin: 5px;
   font-size: 30px;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .switcher input {
   display: none;
 }
 
 .switcher__indicator::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -63,12 +63,12 @@ body {
   border-radius: 50%;
   transition: all 0.3s ease;
   -webkit-animation-name: pulsein;
-          animation-name: pulsein;
+  animation-name: pulsein;
   -webkit-animation-duration: 0.3s;
-          animation-duration: 0.3s;
+  animation-duration: 0.3s;
 }
 .switcher__indicator::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 16px;
   left: 0;
@@ -82,19 +82,21 @@ input:checked + .switcher__indicator::after {
   background-color: #29ce9a;
   transform: translateX(40px);
   -webkit-animation-name: pulseout;
-          animation-name: pulseout;
+  animation-name: pulseout;
   -webkit-animation-duration: 0.3s;
-          animation-duration: 0.3s;
+  animation-duration: 0.3s;
 }
 input:checked + .switcher__indicator::before {
   background-color: #29ce9a;
 }
-input:disabled + .switcher__indicator::after, input:disabled + .switcher__indicator::before {
+input:disabled + .switcher__indicator::after,
+input:disabled + .switcher__indicator::before {
   background-color: #e5e5e5;
 }
 
 @-webkit-keyframes pulsein {
-  0%, 100% {
+  0%,
+  100% {
     top: 0px;
     height: 40px;
     width: 40px;
@@ -107,7 +109,8 @@ input:disabled + .switcher__indicator::after, input:disabled + .switcher__indica
 }
 
 @keyframes pulsein {
-  0%, 100% {
+  0%,
+  100% {
     top: 0px;
     height: 40px;
     width: 40px;
@@ -119,7 +122,8 @@ input:disabled + .switcher__indicator::after, input:disabled + .switcher__indica
   }
 }
 @-webkit-keyframes pulseout {
-  0%, 100% {
+  0%,
+  100% {
     top: 0px;
     height: 40px;
     width: 40px;
@@ -131,7 +135,8 @@ input:disabled + .switcher__indicator::after, input:disabled + .switcher__indica
   }
 }
 @keyframes pulseout {
-  0%, 100% {
+  0%,
+  100% {
     top: 0px;
     height: 40px;
     width: 40px;

@@ -12,7 +12,7 @@ function CompoundComponentParent({children}) {
     React.cloneElement(child, {
       selectedTabId: selectedTabId,
       selectTab: selectTab,
-    })
+    }),
   )
 }
 
@@ -29,7 +29,9 @@ function Tokyo({selectedTabId, children}) {
 }
 
 function Tabs({selectedTabId, selectTab, tabs}) {
-  return <TabsComponent selected={selectedTabId} onChange={selectTab} tabs={tabs} />
+  return (
+    <TabsComponent selected={selectedTabId} onChange={selectTab} tabs={tabs} />
+  )
 }
 
 function App() {

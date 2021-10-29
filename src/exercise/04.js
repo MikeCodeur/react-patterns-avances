@@ -4,7 +4,10 @@
 import * as React from 'react'
 import CheckBox from '../checkbox'
 
-const executeAll = (...functions) => (...args) => functions.forEach(func => func?.(...args))
+const executeAll =
+  (...functions) =>
+  (...args) =>
+    functions.forEach(func => func?.(...args))
 
 function defaultCheckboxReducer(state, action) {
   switch (action.type) {
@@ -24,15 +27,18 @@ function defaultCheckboxReducer(state, action) {
 // 🤖 {initialChecked = false, reducer = defaultCheckboxReducer} = {}
 function useCheckBox({initialChecked = false} = {}) {
   const {current: initialState} = React.useRef({checked: initialChecked})
-  
+
   // 🐶 A la place d'utiliser 'defaultCheckboxReducer' utilise 'reducer' passé en paramètre.
-  const [state, dispatch] = React.useReducer(defaultCheckboxReducer, initialState)
+  const [state, dispatch] = React.useReducer(
+    defaultCheckboxReducer,
+    initialState,
+  )
   const {checked} = state
 
   const tick = () => dispatch({type: 'tick'})
   const reset = () => dispatch({type: 'reset', initialState})
 
-  const getCheckboxerProps = ({onClick, ...props} = {}) =>{
+  const getCheckboxerProps = ({onClick, ...props} = {}) => {
     return {
       'aria-checked': checked,
       onChange: executeAll(onClick, tick),

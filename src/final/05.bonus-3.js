@@ -30,7 +30,6 @@ function defaultCheckboxReducer(state, action) {
   }
 }
 
-
 function useControlledCheckBoxWarning(
   controlPropValue,
   controlPropName,
@@ -39,7 +38,7 @@ function useControlledCheckBoxWarning(
   const isControlled = controlPropValue != null
   const {current: previousIsControlledMode} = React.useRef(isControlled)
 
-  React.useEffect(()=> {
+  React.useEffect(() => {
     warning(
       !(!previousIsControlledMode && isControlled),
       `\`useCheckBox\` passe d'un mode non-controllé à un mode controllé.  Décider d'un mode controllé ou non pour \`${componentName}\``,
@@ -48,8 +47,7 @@ function useControlledCheckBoxWarning(
       !(previousIsControlledMode && !isControlled),
       `\`useCheckBox\` passe d'un mode controllé à un mode non-controllé.  Décider d'un mode controllé ou non pour \`${componentName}\``,
     )
-
-  },[componentName, controlPropName, isControlled, previousIsControlledMode])
+  }, [componentName, controlPropName, isControlled, previousIsControlledMode])
 }
 
 function useOnChangeWarning(
@@ -65,13 +63,7 @@ function useOnChangeWarning(
       !(!hasOnChange && isControlled),
       `Un prop \`checked\` est passé à useCheckBox sans \`onChange\` . Cela rendra la checkbox en lecture seule. Si vous voulez le rendre modifiable, ajouter \`onChange\``,
     )
-  }, [
-    componentName,
-    controlPropName,
-    isControlled,
-    hasOnChange,
-    onChangeProp
-  ])
+  }, [componentName, controlPropName, isControlled, hasOnChange, onChangeProp])
 }
 
 function useCheckBox({
@@ -133,7 +125,7 @@ function SuperCheckBox({checked: controlledChecked, onChange, readOnly}) {
   const {checked, getCheckboxerProps} = useCheckBox({
     checked: controlledChecked,
     onChange,
-    readOnly
+    readOnly,
   })
   const props = getCheckboxerProps({checked})
   return <CheckBox {...props} />

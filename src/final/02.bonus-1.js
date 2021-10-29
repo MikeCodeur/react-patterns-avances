@@ -24,7 +24,7 @@ function Tabs({children, ...props}) {
 function useTabs() {
   const context = React.useContext(TabsContext)
   if (!context) {
-    throw new Error('useTabs s\'utilise dans un <Tabs /> ')
+    throw new Error("useTabs s'utilise dans un <Tabs /> ")
   }
 }
 
@@ -64,7 +64,7 @@ function TabPanels({children}) {
   )
 }
 
-function Panel({ panelId, children, ...props}) {
+function Panel({panelId, children, ...props}) {
   const {selectedTabId} = useTabs()
   return selectedTabId === panelId ? <div {...props}>{children}</div> : null
 }

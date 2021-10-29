@@ -5,7 +5,14 @@
 import * as React from 'react'
 import CheckBox from '../checkbox'
 
-import {CounterProvider, useCounter,useCounterChanged ,CounterChangedProvider, increment, decrement} from './06/context-counter'
+import {
+  CounterProvider,
+  useCounter,
+  useCounterChanged,
+  CounterChangedProvider,
+  increment,
+  decrement,
+} from './06/context-counter'
 
 function Counter() {
   const [state, dispatch] = useCounter()
@@ -26,8 +33,8 @@ function TwoCheckbox() {
   const [, dispatchCounterChanged] = useCounterChanged()
   return (
     <div>
-      <CheckBox onChange={() => increment(dispatch)}/>
-      <CheckBox onChange={() => increment(dispatchCounterChanged)}/>
+      <CheckBox onChange={() => increment(dispatch)} />
+      <CheckBox onChange={() => increment(dispatchCounterChanged)} />
     </div>
   )
 }
@@ -36,8 +43,8 @@ function App() {
   return (
     <CounterProvider>
       <CounterChangedProvider>
-      <Counter />
-      <TwoCheckbox />
+        <Counter />
+        <TwoCheckbox />
       </CounterChangedProvider>
     </CounterProvider>
   )

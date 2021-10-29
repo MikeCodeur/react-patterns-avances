@@ -41,9 +41,9 @@ function useCheckBox({
   const checkedIsControlled = controlledChecked != null
   const checked = checkedIsControlled ? controlledChecked : state.checked
 
-  const {current : previousIsControlledMode} = React.useRef(checkedIsControlled)
+  const {current: previousIsControlledMode} = React.useRef(checkedIsControlled)
 
-  React.useEffect(()=> {
+  React.useEffect(() => {
     warning(
       !(!previousIsControlledMode && checkedIsControlled),
       `\`useCheckBox\` passe d'un mode non-controllé à un mode controllé. Décider d'un mode controllé ou non pour \`useCheckBox\``,
@@ -52,10 +52,9 @@ function useCheckBox({
       !(previousIsControlledMode && !checkedIsControlled),
       `\`useCheckBox\` passe d'un mode controllé à un mode non-controllé. Décider d'un mode controllé ou non \`useCheckBox\` `,
     )
+  }, [checkedIsControlled, previousIsControlledMode])
 
-  },[checkedIsControlled, previousIsControlledMode])
-  
-  const hasOnChange = typeof onChange!= 'undefined'
+  const hasOnChange = typeof onChange != 'undefined'
   React.useEffect(() => {
     warning(
       !(!hasOnChange && checkedIsControlled),
@@ -102,7 +101,7 @@ function SuperCheckBox({checked: controlledChecked, onChange, readOnly}) {
   const {checked, getCheckboxerProps} = useCheckBox({
     checked: controlledChecked,
     onChange,
-    readOnly
+    readOnly,
   })
   const props = getCheckboxerProps({checked})
   return <CheckBox {...props} />
