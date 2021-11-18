@@ -34,7 +34,7 @@ function useCheckBox({
   onChange,
   checked: controlledChecked,
 } = {}) {
-  const {current: initialState} = React.useRef({checked: initialChecked})
+  const initialState = {checked: initialChecked}
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const checkedIsControlled = controlledChecked != null
   const checked = checkedIsControlled ? controlledChecked : state.checked
@@ -112,7 +112,7 @@ function App() {
           <br />
         </div>
       ) : timesChanged > 0 ? (
-        <div data-testid="click-count">
+        <div data-testid="change-count">
           Nombre de changement: {timesChanged}
         </div>
       ) : null}
