@@ -1,3 +1,4 @@
+"use client"
 // Context Module Functions
 // http://localhost:3000/alone/final/06.js
 

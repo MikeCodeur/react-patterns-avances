@@ -1,3 +1,4 @@
+"use client"
 // Composants composés avec Context
 // http://localhost:3000/alone/exercise/02.js
 

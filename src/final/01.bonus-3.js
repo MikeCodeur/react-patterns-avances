@@ -1,3 +1,4 @@
+"use client"
 // Compound Components
 // 🚀 Supporter un enfant "autre"
 // http://localhost:3000/alone/final/01.bonus-1.js

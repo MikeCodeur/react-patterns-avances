@@ -1,3 +1,4 @@
+"use client"
 // Styling
 // 🚀 Creation d'un composant personalisé
 // http://localhost:3000/alone/final/01.bonus-1.js

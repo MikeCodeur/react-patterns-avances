@@ -1,3 +1,4 @@
+"use client"
 // Props Control
 // 🚀 Warning lecture seule
 // http://localhost:3000/alone/final/05.bonus-1.js

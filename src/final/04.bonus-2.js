@@ -1,3 +1,4 @@
+"use client"
 // Composants composés avec Context
 // 🚀 Action Type
 // http://localhost:3000/alone/final/04.bonus-2.js

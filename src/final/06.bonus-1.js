@@ -1,3 +1,4 @@
+"use client"
 // Context Module Functions
 // 🚀 utilisation de 2 contextes
 // http://localhost:3000/alone/final/06.bonus-1.js

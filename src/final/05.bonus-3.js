@@ -1,3 +1,4 @@
+"use client"
 // Props Control
 // 🚀 Hooks personnalisés Warning
 // http://localhost:3000/alone/final/05.bonus-3.js

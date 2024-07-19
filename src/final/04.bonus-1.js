@@ -1,3 +1,4 @@
+"use client"
 // Composants composés avec Context
 // 🚀 Validation du Hook Provider
 // http://localhost:3000/alone/final/04.bonus-1.js

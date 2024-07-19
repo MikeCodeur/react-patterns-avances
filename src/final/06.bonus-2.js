@@ -1,3 +1,4 @@
+"use client"
 // Context Module Functions
 //  🚀 Reset des compteurs
 // http://localhost:3000/alone/final/06.bonus-2.js

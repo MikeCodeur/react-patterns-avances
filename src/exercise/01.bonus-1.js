@@ -1,3 +1,4 @@
+"use client"
 // Composants composés
 // 🚀 Tabs composant composés
 // http://localhost:3000/alone/exercise/01.bonus-1.js
